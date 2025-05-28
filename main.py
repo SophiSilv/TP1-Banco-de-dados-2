@@ -17,6 +17,17 @@ def db_config(filename='conexaobanco.ini', section='postgresql'):
   return db
 
 
+
+
 params = db_config()
 conn = psycopg2.connect(**params)
+aux = conn.cursor()
 
+aux.execute("select transacao from log where operacao = 'end';")
+rows = aux.fetchall()
+for row in rows:
+    print(row)
+
+#ler um por um das coisas da tabela log
+#comparar com o que ta na lista de transações finalizadas
+#se tiver na lista, inserir na tabela de novo e imprimir
