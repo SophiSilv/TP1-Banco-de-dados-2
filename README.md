@@ -17,7 +17,7 @@ O projeto simula o funcionamento do mecanismo de log de um SGBD, permitindo que 
   ## Estrutura do Projeto
 - ScriptCriacaoTabelas.sql // criação das tabelas e triggers
 - ScriptTeste.sql // execução de transações com log
-- main.py # script REDO para recuperação
+- main.py // script REDO para recuperação
 - conexaobanco.ini // configurações de conexão com o banco
 - README.md
 
