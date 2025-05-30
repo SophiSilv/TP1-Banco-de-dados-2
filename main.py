@@ -1,7 +1,7 @@
 from configparser import ConfigParser
 import psycopg2
 
-# Função que pega as configurações do banco do arquivo database.ini
+# configura a conexão com o banco
 def db_config(filename='conexaobanco.ini', section='postgresql'):
   parser = ConfigParser()
   parser.read(filename)
@@ -15,16 +15,17 @@ def db_config(filename='conexaobanco.ini', section='postgresql'):
     raise Exception('Section {0} not found in the {1} file'.format(section, filename))
 
   return db
-  
-def printar(transacao, tipo, id, nome, saldo):
-  print("< " + str(transacao) + " , " + tipo + " , " + str(id) + " , " + nome + " , " + str(saldo) + " >")
 
+# imprime as transações
+def printar(transacao, tipo, id, nome, saldo):
+  print("<" + str(transacao) + ", " + tipo + ", " + str(id) + ", " + nome + ", " + str(saldo) + ">")
+
+
+# main -> executa o código de fato
 try:
   params = db_config()
   conn = psycopg2.connect(**params)
   aux = conn.cursor()
-
-
 
   t_end = []
   aux.execute("select transacao from log where operacao = 'end';")
